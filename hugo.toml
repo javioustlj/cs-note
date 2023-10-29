@@ -1,5 +1,5 @@
-baseURL = "/"
-title = "Goldydocs"
+baseURL = "https://javioustlj.github.io/computer-interview-note/"
+title = "计算机面试指南"
 
 # Language settings
 contentDir = "content/en"
@@ -85,6 +85,16 @@ description = "یک نمونه برای پوسته داکسی"
 time_format_default = "2006.01.02"
 time_format_blog = "2006.01.02"
 
+[languages.zh-cn]
+languageName = "中文"
+contentDir = "content/zh-cn"
+[languages.zh-cn.params]
+title = "计算机面试指南"
+description = "计算机面试, 程序设计, 设计模式, 数据结构, 算法, 计算机网络, 操作系统"
+time_format_default = "2006.01.02"
+time_format_blog = "2006.01.02"
+
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.parser.attribute]
@@ -104,8 +114,8 @@ time_format_blog = "2006.01.02"
 section = ["HTML", "print", "RSS"]
 
 [params]
-copyright = "The Docsy Authors"
-privacy_policy = "https://policies.google.com/privacy"
+copyright = "夏田墨"
+privacy_policy = "https://javioustlj.github.io"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]

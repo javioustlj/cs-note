@@ -1,0 +1,13 @@
+name: sync to gitee
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync to Gitee
+        uses: wearerequired/git-mirror-action@v1.2.0
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+        with:
+          source-repo: git@github.com:javioustlj/computer-interview-note.git
+          destination-repo: git@gitee.com:javioustlj/computer-interview-note.git

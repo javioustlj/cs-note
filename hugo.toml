@@ -1,9 +1,9 @@
-baseURL = "https://javioustlj.github.io/computer-interview-note/"
-title = "计算机面试指南"
+baseURL = "https://javioustlj.github.io/cs-note/"
+title = "夏田墨计算机笔记"
 
 # Language settings
-contentDir = "content/en"
-defaultContentLanguage = "en"
+contentDir = "content/zh-cn"
+defaultContentLanguage = "zh-cn"
 defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
@@ -59,6 +59,15 @@ id = "UA-00000000-0"
 # Language configuration
 
 [languages]
+[languages.zh-cn]
+languageName = "中文"
+contentDir = "content/zh-cn"
+[languages.zh-cn.params]
+title = "夏田墨计算机笔记"
+description = "计算机面试, 程序设计, 设计模式, 数据结构, 算法, 计算机网络, 操作系统"
+time_format_default = "2006.01.02"
+time_format_blog = "2006.01.02"
+
 [languages.en]
 languageName ="English"
 # Weight used for sorting.
@@ -82,15 +91,6 @@ contentDir = "content/fa"
 [languages.fa.params]
 title = "اسناد گلدی"
 description = "یک نمونه برای پوسته داکسی"
-time_format_default = "2006.01.02"
-time_format_blog = "2006.01.02"
-
-[languages.zh-cn]
-languageName = "中文"
-contentDir = "content/zh-cn"
-[languages.zh-cn.params]
-title = "计算机面试指南"
-description = "计算机面试, 程序设计, 设计模式, 数据结构, 算法, 计算机网络, 操作系统"
 time_format_default = "2006.01.02"
 time_format_blog = "2006.01.02"
 

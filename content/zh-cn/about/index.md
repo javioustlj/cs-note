@@ -1,32 +1,34 @@
 ---
-title: 关于计算机面试指南
+title: 关于夏田墨计算机笔记
 linkTitle: 关于
 menu: {main: {weight: 10}}
 ---
 
-{{% blocks/cover title="计算机面试指南" image_anchor="bottom" height="auto" %}}
+{{% blocks/cover title="夏田墨计算机笔记" image_anchor="bottom" height="auto" %}}
 
-计算机面试指南
+计算机笔记
 {.mt-5}
 
 {{% /blocks/cover %}}
 
 {{% blocks/lead %}}
 
-我在准备计算机的面试过程中, 觉得有必要记录下来, 这个博客就是用来记录夏田墨准备计算机面试过程的记录. 由于在大学, 工作, 虚度了近10年的光阴, 希望以后可以有一份更好的工作. 
+在工作中遇到了很多的计算机知识，一直没有做过一个整理，趁着这次换工作的机会，把整理的内容记录下来.
+
+这个博客用来记录总结的知识，以及面试的过程。
 
 {{% /blocks/lead %}}
 
 {{% blocks/section %}}
 
-# 计算机面试指南
+# 夏田墨计算机笔记
 {.text-center}
 
 {{% /blocks/section %}}
 
 {{% blocks/section %}}
 
-# 计算机面试指南
+# 夏田墨计算机笔记
 {.text-center}
 
 {{% /blocks/section %}}

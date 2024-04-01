@@ -9,5 +9,5 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
         with:
-          source-repo: git@github.com:javioustlj/computer-interview-note.git
-          destination-repo: git@gitee.com:javioustlj/computer-interview-note.git
+          source-repo: git@github.com:javioustlj/cs-note.git
+          destination-repo: git@gitee.com:javioustlj/cs-note.git

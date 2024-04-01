@@ -89,8 +89,6 @@ description = "یک نمونه برای پوسته داکسی"
 time_format_default = "2006.01.02"
 time_format_blog = "2006.01.02"
 
-<<<<<<< HEAD
-=======
 [languages.zh-cn]
 languageName = "中文"
 contentDir = "content/zh-cn"
@@ -99,8 +97,6 @@ title = "计算机面试指南"
 description = "计算机面试, 程序设计, 设计模式, 数据结构, 算法, 计算机网络, 操作系统"
 time_format_default = "2006.01.02"
 time_format_blog = "2006.01.02"
-
->>>>>>> 126ec84 (basic support of my site of configuration)
 
 [markup]
   [markup.goldmark]
@@ -121,10 +117,6 @@ time_format_blog = "2006.01.02"
 section = ["HTML", "print", "RSS"]
 
 [params]
-<<<<<<< HEAD
-=======
-copyright = "夏田墨"
->>>>>>> 126ec84 (basic support of my site of configuration)
 privacy_policy = "https://javioustlj.github.io"
 
 # First one is picked as the Twitter card image if not set on page.

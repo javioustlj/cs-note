@@ -3,7 +3,7 @@ title: 计算机笔记
 ---
 
 {{< blocks/cover title="欢迎来到夏田墨计算机笔记" image_anchor="top" height="full" >}}
-<a class="btn btn-lg btn-primary me-3 mb-4" href="/cs-note/docs/">
+<a class="btn btn-lg btn-primary me-3 mb-4" href="/cs-note/cpp/">
   Learn More <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="https://github.com/google/docsy-example">

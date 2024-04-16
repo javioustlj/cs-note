@@ -1,4 +1,396 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>夏田墨计算机笔记 – 博客</title><link>https://javioustlj.github.io/cs-note/blog/</link><description>Recent content in 博客 on 夏田墨计算机笔记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://javioustlj.github.io/cs-note/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 一个奇怪问题的debug之旅</title><link>https://javioustlj.github.io/cs-note/blog/2024/04/05/%E4%B8%80%E4%B8%AA%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98%E7%9A%84debug%E4%B9%8B%E6%97%85/</link><pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate><guid>https://javioustlj.github.io/cs-note/blog/2024/04/05/%E4%B8%80%E4%B8%AA%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98%E7%9A%84debug%E4%B9%8B%E6%97%85/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>夏田墨计算机笔记 – 博客</title><link>https://javioustlj.github.io/cs-note/blog/</link><description>Recent content in 博客 on 夏田墨计算机笔记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://javioustlj.github.io/cs-note/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: gdb常用命令总结</title><link>https://javioustlj.github.io/cs-note/blog/2024/04/05/gdb%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</link><pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate><guid>https://javioustlj.github.io/cs-note/blog/2024/04/05/gdb%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</guid><description>
+&lt;h2 id="1-cheat-sheet">1. cheat sheet&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:left">显示类命令&lt;/th>
+&lt;th>缩写&lt;/th>
+&lt;th>命令说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:left">info&lt;/td>
+&lt;td>i&lt;/td>
+&lt;td>查看断点 / 线程等信息&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">print&lt;/td>
+&lt;td>p&lt;/td>
+&lt;td>打印变量或寄存器值&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">display&lt;/td>
+&lt;td>display&lt;/td>
+&lt;td>自动显示命令&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">whatis&lt;/td>
+&lt;td>whatis&lt;/td>
+&lt;td>查看变量类型&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">ptype&lt;/td>
+&lt;td>ptype&lt;/td>
+&lt;td>查看变量类型&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">list&lt;/td>
+&lt;td>l&lt;/td>
+&lt;td>显示源码&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">disassemble&lt;/td>
+&lt;td>dis&lt;/td>
+&lt;td>查看汇编代码&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">backtrace&lt;/td>
+&lt;td>bt&lt;/td>
+&lt;td>查看当前线程的调用堆栈&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">help&lt;/td>
+&lt;td>help&lt;/td>
+&lt;td>帮助命令&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>控制类型的命令&lt;/th>
+&lt;th>缩写&lt;/th>
+&lt;th>命令说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>run&lt;/td>
+&lt;td>r&lt;/td>
+&lt;td>运行一个待调试的程序&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>continue&lt;/td>
+&lt;td>c&lt;/td>
+&lt;td>让暂停的程序继续运行&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>next&lt;/td>
+&lt;td>n&lt;/td>
+&lt;td>运行到下一行&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>step&lt;/td>
+&lt;td>s&lt;/td>
+&lt;td>单步执行，遇到函数会进入&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>until&lt;/td>
+&lt;td>u&lt;/td>
+&lt;td>运行到指定行停下来&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>finish&lt;/td>
+&lt;td>fi&lt;/td>
+&lt;td>结束当前调用函数，回到上一层调用函数处&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>return&lt;/td>
+&lt;td>return&lt;/td>
+&lt;td>结束当前调用函数并返回指定值，到上一层函数调用处&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>jump&lt;/td>
+&lt;td>j&lt;/td>
+&lt;td>将当前程序执行流跳转到指定行或地址&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>断点监视点&lt;/th>
+&lt;th>缩写&lt;/th>
+&lt;th>命令说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>break&lt;/td>
+&lt;td>b&lt;/td>
+&lt;td>添加断点&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>tbreak&lt;/td>
+&lt;td>tb&lt;/td>
+&lt;td>添加临时断点&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>delete&lt;/td>
+&lt;td>d&lt;/td>
+&lt;td>删除断点&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>enable&lt;/td>
+&lt;td>enable&lt;/td>
+&lt;td>启用某个断点&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>disable&lt;/td>
+&lt;td>disable&lt;/td>
+&lt;td>禁用某个断点&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>watch&lt;/td>
+&lt;td>watch&lt;/td>
+&lt;td>监视某一个变量或内存地址的值是否发生变化&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>名称&lt;/th>
+&lt;th>缩写&lt;/th>
+&lt;th>命令说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>frame&lt;/td>
+&lt;td>f&lt;/td>
+&lt;td>切换到当前调用线程的指定堆栈&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>thread&lt;/td>
+&lt;td>thread&lt;/td>
+&lt;td>切换到指定线程&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>set args&lt;/td>
+&lt;td>set args&lt;/td>
+&lt;td>设置程序启动命令行参数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>show args&lt;/td>
+&lt;td>show args&lt;/td>
+&lt;td>查看设置的命令行参数&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="11-常用调试方式">1.1 常用调试方式&lt;/h3>
+&lt;ol>
+&lt;li>直接调试目标程序：&lt;/li>
+&lt;li>附加进程 id：gdb attach pid&lt;/li>
+&lt;li>调试 core 文件：gdb filename corename&lt;/li>
+&lt;/ol>
+&lt;p>调试目标程序&lt;/p>
+&lt;pre tabindex="0">&lt;code>gdb ./hello_world
+&lt;/code>&lt;/pre>&lt;p>调试一个正在运行的程序&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 启动时直接attach到一个进程&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>gdb -p PID
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># 在gdb环境中 attach一个进程&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>（gdb） attach PID
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>调试 core 文件：&lt;/p>
+&lt;pre tabindex="0">&lt;code>gdb ./program_name corename
+&lt;/code>&lt;/pre>&lt;h3 id="12-常用命令">1.2 常用命令&lt;/h3>
+&lt;p>退出命令：&lt;strong>q（quit）或者 Ctr + d&lt;/strong>
+启动程序：&lt;strong>r (run)&lt;/strong>
+继续运行：&lt;strong>c (continue）&lt;/strong>
+查看调用栈：&lt;strong>bt (backtrace）&lt;/strong>
+进入调用栈：&lt;strong>f （frame）堆栈编号&lt;/strong>
+单步执行：&lt;strong>n（next）&lt;/strong>，遇到函数直接跳过，不进入函数内部
+单步执行：&lt;strong>s（step）&lt;/strong>，会进入函数内部
+退出当前函数：&lt;strong>finish&lt;/strong>，继续执行完当前函数，正常退出
+返回当前函数：&lt;strong>return&lt;/strong>，从当前位置，从当前函数退出，剩下的代码不执行了，可以指定函数的返回值；
+指定位置停下来：&lt;strong>until&lt;/strong>，和 &lt;strong>break&lt;/strong> 类似
+查看某段代码的汇编指令：&lt;strong>disassemble&lt;/strong>
+帮助命令：&lt;strong>help&lt;/strong>&lt;/p>
+&lt;h3 id="13-断点">1.3 断点&lt;/h3>
+&lt;h4 id="131-设置断点">1.3.1 设置断点&lt;/h4>
+&lt;p>程序运行到某一行&lt;/p>
+&lt;pre tabindex="0">&lt;code>b test.cpp 100
+&lt;/code>&lt;/pre>&lt;p>程序运行到某一个函数&lt;/p>
+&lt;pre tabindex="0">&lt;code>b namespace::func
+&lt;/code>&lt;/pre>&lt;p>其他文件设置&lt;/p>
+&lt;pre tabindex="0">&lt;code>b a.cpp:441
+&lt;/code>&lt;/pre>&lt;p>其他文件的某一个函数&lt;/p>
+&lt;pre tabindex="0">&lt;code>b a.cpp:func
+&lt;/code>&lt;/pre>&lt;p>设置条件断点&lt;/p>
+&lt;pre tabindex="0">&lt;code>b if i = 8
+&lt;/code>&lt;/pre>&lt;h4 id="132-查看断点">1.3.2 查看断点&lt;/h4>
+&lt;pre tabindex="0">&lt;code>info b
+&lt;/code>&lt;/pre>&lt;h4 id="133-删除断点">1.3.3 删除断点&lt;/h4>
+&lt;p>删除第几个断点&lt;/p>
+&lt;pre tabindex="0">&lt;code>delete N
+&lt;/code>&lt;/pre>&lt;p>删除第几行的断点&lt;/p>
+&lt;pre tabindex="0">&lt;code>clear N
+&lt;/code>&lt;/pre>&lt;h4 id="134使能断点">1.3.4使能断点&lt;/h4>
+&lt;p>使能第 N 个断点&lt;/p>
+&lt;pre tabindex="0">&lt;code>enable N
+&lt;/code>&lt;/pre>&lt;p>不使能第 N 个断点&lt;/p>
+&lt;pre tabindex="0">&lt;code>disable N
+&lt;/code>&lt;/pre>&lt;h3 id="14-监视点">1.4 监视点&lt;/h3>
+&lt;p>单个变量&lt;/p>
+&lt;pre tabindex="0">&lt;code>watch i
+&lt;/code>&lt;/pre>&lt;p>指针变量，监视的是指针变量本身，&lt;/p>
+&lt;pre tabindex="0">&lt;code>watch p
+&lt;/code>&lt;/pre>&lt;p>指针所指向的变量，监视指针所值的内容：&lt;/p>
+&lt;pre tabindex="0">&lt;code>watch *p
+&lt;/code>&lt;/pre>&lt;p>数组，可以监视整个数组的内容&lt;/p>
+&lt;pre tabindex="0">&lt;code>watch a
+&lt;/code>&lt;/pre>&lt;p>注意：当监视的变量变化时会自动停下来
+当监视的变量脱离了作用域，也就失效了；&lt;/p>
+&lt;h3 id="15-打印">1.5 打印&lt;/h3>
+&lt;p>调用函数&lt;/p>
+&lt;pre tabindex="0">&lt;code>p func()
+&lt;/code>&lt;/pre>&lt;p>调试过程中修改变量的值&lt;/p>
+&lt;pre tabindex="0">&lt;code>print var=value
+&lt;/code>&lt;/pre>&lt;p>计算表达式并打印&lt;/p>
+&lt;pre tabindex="0">&lt;code>print a+b+c
+&lt;/code>&lt;/pre>&lt;p>输出当前对象的各成员变量的值&lt;/p>
+&lt;pre tabindex="0">&lt;code>print *this
+&lt;/code>&lt;/pre>&lt;p>查看变量类型&lt;/p>
+&lt;pre tabindex="0">&lt;code>whatis var
+&lt;/code>&lt;/pre>&lt;p>查看变量类型，可以查看复合数据类型，会打印出该类型的成员变量&lt;/p>
+&lt;pre tabindex="0">&lt;code>ptype val
+&lt;/code>&lt;/pre>&lt;h4 id="151-打印字符串">1.5.1 打印字符串&lt;/h4>
+&lt;p>打印 &lt;code>std::string&lt;/code>&lt;/p>
+&lt;p>打印内容&lt;/p>
+&lt;pre tabindex="0">&lt;code>p str
+p str.c_str()
+&lt;/code>&lt;/pre>&lt;p>打印长度&lt;/p>
+&lt;pre tabindex="0">&lt;code>p str.length()
+p str.size()
+&lt;/code>&lt;/pre>&lt;p>字符串太长&lt;/p>
+&lt;pre tabindex="0">&lt;code>set print elements 0
+&lt;/code>&lt;/pre>&lt;h4 id="152-打印-vector-和-map">1.5.2 打印 vector 和 map&lt;/h4>
+&lt;h3 id="16-list-命令">1.6 &lt;code>list&lt;/code> 命令&lt;/h3>
+&lt;p>输出上一次list命令显示的代码后面的代码，如果是第一次执行list命令，则会显示当前正在执行代码位置附近的代码；&lt;/p>
+&lt;pre tabindex="0">&lt;code>list
+&lt;/code>&lt;/pre>&lt;p>上一次 list 命令显示的代码前面的代码&lt;/p>
+&lt;pre tabindex="0">&lt;code>list -
+&lt;/code>&lt;/pre>&lt;p>显示当前代码文件第 &lt;strong>Linenumber&lt;/strong> 行附近的代码；&lt;/p>
+&lt;pre tabindex="0">&lt;code>list Linenumber
+&lt;/code>&lt;/pre>&lt;p>显示 &lt;strong>FileName&lt;/strong> 文件第 &lt;strong>LineNo&lt;/strong> 行附近的代码&lt;/p>
+&lt;pre tabindex="0">&lt;code>list FileName:Linenumber
+&lt;/code>&lt;/pre>&lt;p>显示当前文件的 &lt;strong>FunctionName&lt;/strong> 函数附近的代码&lt;/p>
+&lt;pre tabindex="0">&lt;code>list FunctionName
+&lt;/code>&lt;/pre>&lt;p>显示 &lt;strong>FileName&lt;/strong> 文件的 &lt;strong>FunctionName&lt;/strong> 函数附件的代码&lt;/p>
+&lt;pre tabindex="0">&lt;code>list FileName:FunctionName
+&lt;/code>&lt;/pre>&lt;p>其中&lt;strong>from&lt;/strong>和&lt;strong>to&lt;/strong>是具体的代码位置，显示这之间的代码&lt;/p>
+&lt;pre tabindex="0">&lt;code>list from,to
+&lt;/code>&lt;/pre>&lt;h3 id="17-jump-命令">1.7 &lt;code>jump&lt;/code> 命令&lt;/h3>
+&lt;ol>
+&lt;li>中间跳过的代码是不会执行的；&lt;/li>
+&lt;li>跳到的位置后如果没有断点，那么GDB会自动继续往后执行；&lt;/li>
+&lt;/ol>
+&lt;p>跳转到第几行&lt;/p>
+&lt;pre tabindex="0">&lt;code>jump line_number
+&lt;/code>&lt;/pre>&lt;p>跳转往下 10行&lt;/p>
+&lt;pre tabindex="0">&lt;code>jump + 10
+&lt;/code>&lt;/pre>&lt;p>跳转到具体的内存地址&lt;/p>
+&lt;pre tabindex="0">&lt;code>jump *0X12345678
+&lt;/code>&lt;/pre>&lt;h3 id="18-display-命令">1.8 display 命令&lt;/h3>
+&lt;p>基本用法&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>display expression
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>跟踪变量值：&lt;/strong> 如果您正在调试一个C程序，并且想观察变量&lt;code>foo&lt;/code>的值随程序执行的变化，可以这样设置：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> display foo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>显示内存地址内容：&lt;/strong> 若要跟踪特定内存地址（如&lt;code>0x12345678&lt;/code>）的内容：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> display *0x12345678
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>跟踪表达式结果：&lt;/strong> 如果您关心的是某个计算结果或复杂表达式的值，比如变量&lt;code>a&lt;/code>与&lt;code>b&lt;/code>之和：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> display a + b
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>格式化输出：&lt;/strong> 可以使用&lt;code>/fmt&lt;/code>选项来指定显示值的格式，类似于&lt;code>printf&lt;/code>函数的格式化字符串。例如，以十六进制显示整数：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> display/x foo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或以浮点数的科学记数法显示：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> display/g foo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看GDB文档或使用&lt;code>help format&lt;/code>命令获取更多关于格式化选项的信息。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>查看已设置的display项：&lt;/strong> 如果您设置了多个&lt;code>display&lt;/code>命令，可以使用&lt;code>info display&lt;/code>命令列出所有当前生效的自动显示项及其编号：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> info display
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>取消自动显示：&lt;/strong> 要取消之前设置的某个&lt;code>display&lt;/code>项，使用&lt;code>undisplay&lt;/code>命令并指定其编号：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> undisplay &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上述命令将取消编号为1的&lt;code>display&lt;/code>设置。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>临时禁用所有自动显示：&lt;/strong> 如果想暂时关闭所有自动显示，而不取消它们的设置，可以使用&lt;code>disable display&lt;/code>命令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> disable display
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>后续可以通过&lt;code>enable display&lt;/code>命令重新启用所有自动显示。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>查看即将执行的汇编指令：&lt;/strong> 在调试汇编程序时，使用&lt;code>display/i $pc&lt;/code>命令可以显示每次程序暂停时即将执行的汇编指令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>gdb&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> display/i &lt;span style="color:#000">$pc&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>$pc&lt;/code>是GDB的内部变量，代表当前程序计数器的值，即下一条要执行的指令地址。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="2-调试分析-core-文件">2 调试分析 core 文件&lt;/h2>
+&lt;ol>
+&lt;li>用 gdb 打开 core 文件&lt;/li>
+&lt;li>查看堆栈信息&lt;/li>
+&lt;li>进入某个栈：f N，f 是 frame 的缩写，N 是栈号，如0、1、2、3&amp;hellip;&lt;/li>
+&lt;li>进入栈之后，查看变量，print&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>gdb ./program core
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>bt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>where
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>f &lt;span style="color:#0000cf;font-weight:bold">3&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3-多线程调试">3 多线程调试&lt;/h2>
+&lt;h3 id="31-常用的命令">3.1 常用的命令&lt;/h3>
+&lt;p>查看所有线程信息&lt;/p>
+&lt;pre tabindex="0">&lt;code>info thread
+&lt;/code>&lt;/pre>&lt;p>切换线程&lt;/p>
+&lt;pre tabindex="0">&lt;code>thread thread_number
+&lt;/code>&lt;/pre>&lt;p>查看所有线程的栈信息&lt;/p>
+&lt;pre tabindex="0">&lt;code>thread apply all bt
+&lt;/code>&lt;/pre>&lt;p>在特定线程编号上打断点&lt;/p>
+&lt;pre tabindex="0">&lt;code>break location thread thread_number
+&lt;/code>&lt;/pre>&lt;p>通用的命令, 可以用 all，作用禹全部线程&lt;/p>
+&lt;pre tabindex="0">&lt;code>thread apply thread_number1 thread_number2 ... command
+&lt;/code>&lt;/pre>&lt;h3 id="32-模式">3.2 模式&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>all-stop mode&lt;/strong>，全停模式，当程序由于任何原因在 GDB 下停止时，不止当前的线程停止，所有的执行线程都停止。这样允许你检查程序的整体状态，包括线程切换，不用担心当下会有什么改变。&lt;/li>
+&lt;li>&lt;strong>non-stop mode&lt;/strong>，不停模式，调试器（如VS2008和老版本的GDB）往往只支持 &lt;strong>all-stop&lt;/strong> 模式，但在某些场景中，我们可能需要调试个别的线程，并且不想在调试过程中影响其他线程的运行，这样可以把GDB的调式模式由 &lt;strong>all-stop&lt;/strong> 改成 &lt;strong>non-stop&lt;/strong>，&lt;strong>7.0&lt;/strong> 版本的GDB引入了 &lt;strong>non-stop&lt;/strong> 模式。在 &lt;strong>non-stop&lt;/strong> 模式下 &lt;strong>continue、next、step&lt;/strong> 命令只针对当前线程。&lt;/li>
+&lt;li>&lt;strong>record mode&lt;/strong>，记录模式；记录模式允许 GDB 记录程序的执行过程，包括线程的运行、变量的修改等，并将这些信息保存到记录文件中。这个功能可以帮助您分析程序的运行过程，并且可以在之后的时间点回放这些记录，从而帮助您定位问题或理解程序的执行流程。&lt;/li>
+&lt;li>&lt;strong>replay mode&lt;/strong>，回放模式；回放模式允许您回放之前记录的执行过程。在这个模式下，您可以重现程序之前的执行状态，以便更深入地分析和调试程序。这种模式在查找程序运行中的难以复现的问题时非常有用。&lt;/li>
+&lt;/ul>
+&lt;p>non-stop 模式&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>gdb -exec-run-mode non-stop your_program
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>记录模式&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>gdb -record record_file_name your_program
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>回放模式&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>gdb -replay record_file_name
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="33-设置线程锁">3.3 设置线程锁&lt;/h3>
+&lt;p>默认的调试模式：&lt;strong>一个线程暂停运行，其他线程也随即暂停；一个线程启动运行，其他线程也随即启动&lt;/strong>&lt;/p>
+&lt;p>但在一些场景中，我们希望只让特定线程运行，其他线程都维持在暂停状态，即要防止&lt;strong>线程切换&lt;/strong>。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>set scheduler-locking on&lt;/strong>，锁定线程，只有当前或指定线程可以运行；专注于一个调试一个线程。&lt;/li>
+&lt;li>&lt;strong>set scheduler-locking off&lt;/strong>，在单步调试当前线程时，其他线程不受影响，继续并发执行。&lt;/li>
+&lt;li>&lt;strong>set scheduler-locking step&lt;/strong>，当单步执行某一线程时，其他线程不会执行，同时保证在调试过程中当前线程不会发生改变。但如果在该模式下执行 &lt;strong>continue、until、finish&lt;/strong> 命令，则其他线程也会执行；&lt;/li>
+&lt;li>&lt;strong>show scheduler-locking&lt;/strong>，查看线程锁定状态；&lt;/li>
+&lt;/ul>
+&lt;h2 id="4-技巧">4 技巧&lt;/h2>
+&lt;p>和 shell 一样，有一些简便操作：&lt;/p>
+&lt;ol>
+&lt;li>上下方向键可以查看最近的命令&lt;/li>
+&lt;li>回车，执行上一次执行的命令，单步调试非常有用&lt;/li>
+&lt;/ol>
+&lt;p>Reference:&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="https://zhuanlan.zhihu.com/p/297925056">https://zhuanlan.zhihu.com/p/297925056&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.zhihu.com/question/65306462">https://www.zhihu.com/question/65306462&lt;/a>&lt;/li>
+&lt;/ol></description></item><item><title>Blog: 一个奇怪问题的debug之旅</title><link>https://javioustlj.github.io/cs-note/blog/2024/04/05/%E4%B8%80%E4%B8%AA%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98%E7%9A%84debug%E4%B9%8B%E6%97%85/</link><pubDate>Fri, 05 Apr 2024 00:00:00 +0000</pubDate><guid>https://javioustlj.github.io/cs-note/blog/2024/04/05/%E4%B8%80%E4%B8%AA%E5%A5%87%E6%80%AA%E9%97%AE%E9%A2%98%E7%9A%84debug%E4%B9%8B%E6%97%85/</guid><description>
 &lt;h2 id="问题">问题&lt;/h2>
 &lt;p>公司的守护进程的优雅关闭，是通过捕获 &lt;code>SIGTERM&lt;/code> 实现的：&lt;/p>
 &lt;ol>

@@ -89,15 +89,6 @@ description = "یک نمونه برای پوسته داکسی"
 time_format_default = "2006.01.02"
 time_format_blog = "2006.01.02"
 
-[languages.zh-cn]
-languageName = "中文"
-contentDir = "content/zh-cn"
-[languages.zh-cn.params]
-title = "计算机面试指南"
-description = "计算机面试, 程序设计, 设计模式, 数据结构, 算法, 计算机网络, 操作系统"
-time_format_default = "2006.01.02"
-time_format_blog = "2006.01.02"
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.parser.attribute]
@@ -162,8 +153,8 @@ offlineSearch = false
 prism_syntax_highlighting = true
 
 [params.copyright]
-  authors = "Docsy Authors | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) | "
-  from_year = 2018
+  authors = "夏田墨"
+  from_year = 2024
 
 # User interface configuration
 [params.ui]

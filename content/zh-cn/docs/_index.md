@@ -1,8 +1,8 @@
 ---
 title: 文档
 linkTitle: 文档
-menu: {main: {weight: 30}}
-weight: 30
+menu: {main: {weight: 50}}
+weight: 50
 ---
 
 {{% pageinfo %}}

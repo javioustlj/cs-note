@@ -1,6 +1,6 @@
 ---
 title: AI
-linkTitle: ai
+linkTitle: AI
 menu: {main: {weight: 20}}
 weight: 20
 cascade:

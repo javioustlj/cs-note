@@ -1,4 +1,10 @@
-
+---
+title: 缩略表
+linkTitle: abbr
+date: 2024-08-27
+description: >
+    cpp 程序性能优化技巧汇总
+---
 
 | abbr      | english                           | chinese            |
 | :-------- | :-------------------------------- | :----------------- |

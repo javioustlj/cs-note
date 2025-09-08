@@ -1,6 +1,8 @@
 
 # ncclCommInitAll
 
+## ncclCudaLibraryInit
+
 ## ncclGetUniqueId
 
 ### ncclInit
@@ -33,3 +35,7 @@
     ncclCommInitRankDev(comms+i, ndev,1, &uniqueId, i, dev, &config, __func__);
   }
 ```
+
+### ncclAsyncLaunch
+
+#### ncclCommInitRankFunc

@@ -1,0 +1,80 @@
+【Roce网卡预配置】
+1）非bond口：
+
+mlnx_qos -i ens2 -p 0,1,2,3,4,5,6,7
+cma_roce_mode -d mlx5_2 -p 1 -m 2
+cma_roce_tos -d mlx5_2 -t 162
+echo 162  >  /sys/class/infiniband/ens2/tc/1/traffic_class
+mlnx_qos -i ens2 --trust dscp
+mlnx_qos -i ens2 --pfc 0,0,0,0,0,1,0,0
+mlnx_qos -i ens2
+sysctl -w net.ipv4.tcp_ecn=1
+lldptool -T -i ens2 -V PFC enabled=5
+
+2）bond口：
+
+mlnx_qos -i ens11f0 -p 0,1,2,3,4,5,6,7
+mlnx_qos -i ens11f1 -p 0,1,2,3,4,5,6,7
+
+cma_roce_mode -d mlx5_bond_0 -p 1 -m 2
+cma_roce_tos -d mlx5_bond_0 -t 162
+echo 162  >  /sys/class/infiniband/mlx5_bond_0/tc/1/traffic_class
+
+mlnx_qos -i ens11f0 --trust dscp
+mlnx_qos -i ens11f1 --trust dscp
+mlnx_qos -i ens11f0 --pfc 0,0,0,0,0,1,0,0
+mlnx_qos -i ens11f1 --pfc 0,0,0,0,0,1,0,0
+mlnx_qos -i ens11f0
+mlnx_qos -i ens11f1
+sysctl -w net.ipv4.tcp_ecn=1
+lldptool -T -i ens11f0 -V PFC enabled=5
+lldptool -T -i ens11f1 -V PFC enabled=5
+
+
+
+【Roce网卡开启dcbx】
+
+3）非bond口配置dcbx
+mst start
+mst status
+mlxconfig -d /dev/mst/mt4115_pciconf0 q
+mlnx_qos -i ens2
+mlxconfig -d /dev/mst/mt4115_pciconf0 set LLDP_NB_DCBX_P1=TRUE LLDP_NB_TX_MODE_P1=2 LLDP_NB_RX_MODE_P1=2 
+y
+mlxconfig -d /dev/mst/mt4115_pciconf0 q
+
+mlxfwreset -d /dev/mst/mt4115_pciconf0 --level 3 reset
+y
+ethtool --show-priv-flags ens2
+mlnx_qos -i ens2 -d get
+mlnx_qos -i ens2 -d fw
+ethtool --set-priv-flags ens2 qos_with_dcbx_by_fw on
+ethtool --show-priv-flags ens2
+mlnx_qos -i ens2 -d get
+mlnx_qos -i ens2
+
+
+4）bond口配置dcbx
+mst start
+mst status
+mlxconfig -d /dev/mst/mt4115_pciconf0 q
+mlnx_qos -i enp1s0f0
+mlnx_qos -i enp1s0f1
+mlxconfig -d /dev/mst/mt4115_pciconf0 set LLDP_NB_DCBX_P1=TRUE LLDP_NB_TX_MODE_P1=2 LLDP_NB_RX_MODE_P1=2 LLDP_NB_DCBX_P2=TRUE LLDP_NB_TX_MODE_P2=2 LLDP_NB_RX_MODE_P2=2
+y
+mlxconfig -d /dev/mst/mt4115_pciconf0 q
+mlxfwreset -d /dev/mst/mt4115_pciconf0 --level 3 reset  -y
+ethtool --show-priv-flags enp1s0f0
+ethtool --show-priv-flags enp1s0f1
+mlnx_qos -i enp1s0f0 -d get
+mlnx_qos -i enp1s0f1 -d get
+mlnx_qos -i enp1s0f0 -d fw
+mlnx_qos -i enp1s0f1 -d fw
+ethtool --set-priv-flags enp1s0f0 qos_with_dcbx_by_fw on
+ethtool --set-priv-flags enp1s0f1 qos_with_dcbx_by_fw on
+ethtool --show-priv-flags enp1s0f0
+ethtool --show-priv-flags enp1s0f1
+mlnx_qos -i enp1s0f0 -d get
+mlnx_qos -i enp1s0f1 -d get
+mlnx_qos -i enp1s0f0
+mlnx_qos -i enp1s0f1

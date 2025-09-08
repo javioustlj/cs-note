@@ -1,0 +1,1335 @@
+ version 9.1.043, ESS 9128
+#
+ sysname spine-212.0.134.143
+#
+ clock timezone Asia/Shanghai add 08:00:00
+#
+ip vpn-instance management_vpn
+#
+ telnet server enable
+#
+ priority-flow-control poolid 0 headroom 32000
+#
+ospf 10 router-id 212.0.134.143
+ non-stop-routing
+ area 0.0.0.0
+#
+ lldp global enable
+#
+ buffer egress cell queue 6 shared ratio 100
+ buffer egress cell queue 5 shared ratio 100
+ buffer apply
+#
+ buffer threshold alarm ingress enable
+ buffer threshold alarm egress enable
+ buffer threshold alarm headroom enable
+ buffer usage threshold headroom slot 1 ratio 2
+ buffer egress usage threshold slot 1 queue 5 ratio 1
+ buffer ingress usage threshold slot 1 queue 5 ratio 1
+#
+ priority-flow-control deadlock cos 5 interval 10
+ priority-flow-control deadlock precision high
+ password-recovery enable
+#
+vlan 1
+#
+qos map-table dot1p-lp
+ import 0 export 0
+ import 1 export 1
+ import 2 export 2
+#
+openflow instance 1
+ default table-miss permit
+ description SDN_INSTANCE_912c8002-ddc0-4a93-b111-f6fa188bce5e
+ permit-port-type member-port
+ flow-table mac-ip 0 extensibility 1
+ classification global
+ controller 1 address ip 212.0.136.2 local address ip 212.0.134.143 vrf management_vpn
+ active instance
+#
+ stp global enable
+#
+interface NULL0
+#
+interface LoopBack0
+ ip address 12.12.12.123 255.255.255.255
+ ospf 10 area 0.0.0.0
+#
+interface M-GigabitEthernet0/0/0
+ ip binding vpn-instance management_vpn
+ ip address 212.0.134.143 255.255.255.192
+ undo lldp enable
+ dhcp client identifier hex 0234dc9954cb80
+#
+interface FourHundredGigE1/0/17
+ port link-mode route
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ ip address unnumbered interface LoopBack0
+ ospf network-type p2p
+ ospf 10 area 0.0.0.0
+ lldp management-address arp-learning
+ lldp tlv-enable basic-tlv management-address-tlv interface LoopBack0
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/18
+ port link-mode route
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ ip address unnumbered interface LoopBack0
+ ospf network-type p2p
+ ospf 10 area 0.0.0.0
+ lldp management-address arp-learning
+ lldp tlv-enable basic-tlv management-address-tlv interface LoopBack0
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/21
+ port link-mode route
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ ip address unnumbered interface LoopBack0
+ ospf network-type p2p
+ ospf 10 area 0.0.0.0
+ lldp management-address arp-learning
+ lldp tlv-enable basic-tlv management-address-tlv interface LoopBack0
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/22
+ port link-mode route
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ ip address unnumbered interface LoopBack0
+ ospf network-type p2p
+ ospf 10 area 0.0.0.0
+ lldp management-address arp-learning
+ lldp tlv-enable basic-tlv management-address-tlv interface LoopBack0
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/1
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/2
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/3
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/4
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/5
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/6
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/7
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/8
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/9
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/10
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/11
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/12
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/13
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/14
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/15
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/16
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/19
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/20
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/23
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/24
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/25
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/26
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/27
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/28
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/29
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/30
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/31
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/32
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/33
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/34
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/35
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/36
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/37
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/38
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/39
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/40
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/41
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/42
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/43
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/44
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/45
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/46
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/47
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/48
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/49
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/50
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/51
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/52
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/53
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/54
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/55
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/56
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/57
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/58
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/59
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/60
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/61
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/62
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/63
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+interface FourHundredGigE1/0/64
+ port link-mode bridge
+ priority-flow-control enable
+ priority-flow-control no-drop dot1p 5 pause-threshold ratio 5
+ priority-flow-control deadlock enable
+ qos trust dscp
+ qos wfq byte-count
+ qos wfq ef group 1 byte-count 60
+ qos wfq cs6 group sp
+ qos wfq cs7 group sp
+ qos wred queue 5 drop-level 0 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 1 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 drop-level 2 low-limit 2100 high-limit 5000 discard-probability 20
+ qos wred queue 5 ecn
+ qos wred queue 5 weighting-constant 0
+ qos gts queue 6 cir 200000000 cbs 16000000
+#
+ scheduler logfile size 16
+#
+line class console
+ user-role network-admin
+#
+line class vty
+ user-role network-operator
+#
+line con 0
+ user-role network-admin
+#
+line vty 0 63
+ authentication-mode scheme
+ user-role network-admin
+ user-role network-operator
+ idle-timeout 0 0
+#
+ ip route-static vpn-instance management_vpn 0.0.0.0 0 212.0.134.129
+#
+ info-center loghost vpn-instance management_vpn 212.0.136.2
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A28034DC9954CB8100000001
+ snmp-agent community write private
+ snmp-agent community read public
+ snmp-agent sys-info version all
+ snmp-agent packet max-size 4096
+#
+ ssh server enable
+#
+domain name system
+#
+ domain default enable system
+#
+role name level-0
+ description Predefined level-0 role
+#
+role name level-1
+ description Predefined level-1 role
+#
+role name level-2
+ description Predefined level-2 role
+#
+role name level-3
+ description Predefined level-3 role
+#
+role name level-4
+ description Predefined level-4 role
+#
+role name level-5
+ description Predefined level-5 role
+#
+role name level-6
+ description Predefined level-6 role
+#
+role name level-7
+ description Predefined level-7 role
+#
+role name level-8
+ description Predefined level-8 role
+#
+role name level-9
+ description Predefined level-9 role
+#
+role name level-10
+ description Predefined level-10 role
+#
+role name level-11
+ description Predefined level-11 role
+#
+role name level-12
+ description Predefined level-12 role
+#
+role name level-13
+ description Predefined level-13 role
+#
+role name level-14
+ description Predefined level-14 role
+#
+user-group system
+#
+local-user admin class manage
+ password hash $h$6$J6TNkdvU7gC/M5pP$cK5KNnXk5AAHizBSAHjT3LFdh3gyP0WEbLlwROFSHEVna3sN9Rd8
+ service-type telnet http https ssh terminal
+ authorization-attribute user-role network-admin
+ authorization-attribute user-role network-operator
+#
+ security-enhanced level 1
+#
+ undo ssl renegotiation disable
+ undo ssl version ssl3.0 disable
+ undo ssl version tls1.3 disable
+ undo ssl version tls1.0 disable
+ undo ssl version tls1.1 disable
+ undo ssl version tls1.2 disable
+#
+ netconf soap https enable
+ netconf ssh server enable
+#
+ grpc enable
+#
+ vcf-fabric role spine
+#
+ vcf-fabric topology enable
+#
+ vcf-fabric underlay autoconfigure net2_spine.template
+ vcf-fabric underlay pause
+#
+telemetry
+ sensor-group sdn_grpc_1_0
+  sensor path buffermonitor/portquedropevent
+  sensor path buffermonitor/portqueoverrunevent
+  sensor path netanalysis4/rocev2connectionevent
+  sensor path netanalysis4/rocev2intfstatisticevent
+  sensor path netanalysis4/rocev2statisticevent
+ sensor-group sdn_grpc_1_60
+  sensor path buffermonitor/bufferusages
+  sensor path buffermonitor/commbufferusages
+  sensor path buffermonitor/commheadroomusages
+  sensor path buffermonitor/ecnandwredstatistics
+  sensor path buffermonitor/egressdrops
+  sensor path buffermonitor/ingressdrops
+  sensor path buffermonitor/pfcspeeds
+  sensor path buffermonitor/pfcstatistics
+  sensor path buffermonitor/portqueconfigurations
+  sensor path device/extphysicalentities
+  sensor path device/physicalentities
+  sensor path ifmgr/ethportstatistics
+  sensor path ifmgr/interfaces
+  sensor path lldp/lldpneighbors
+  sensor path mqc/globalcategorypolicyaccount
+  sensor path mqc/ifcategorypolicyaccount
+  sensor path mqc/ifpolicyaccount
+  sensor path pfc/pfcports/port
+  sensor path pfc/pfcports/port/portnodrops/portnodrop
+  sensor path pfc/portdeadlocks
+  sensor path qos/interfaces/interface/input/queues/queue/state
+  sensor path qstat/queuestat
+  sensor path wred/dropparameter
+  sensor path wred/ifapplytable
+  sensor path wred/ifqueuewreds/ifqueuewred
+  sensor path wred/ifqueuewreds/ifqueuewred/dropparameters/dropparameter
+  sensor path wred/queueparameter
+ sensor-group sdn_grpc_1_300
+  sensor path acl/ipv4namedadvancerules
+  sensor path mqc/rules
+  sensor path route/ipv4routes
+ sensor-group sdn_grpc_1_600
+  sensor path ifmgr/ports
+ sensor-group sdn_grpc_1_1800
+  sensor path device/transceivers
+ sensor-group sdn_grpc_1_3600
+  sensor path device/base
+ destination-group grp_TDTJA4BE6QIYFHVW4R64HLKBHU
+  ipv4-address 212.0.136.81 port 50051 vpn-instance management_vpn
+ subscription grp_TDTJA4BE6QIYFHVW4R64HLKBHU
+  sensor-group sdn_grpc_1_0
+  sensor-group sdn_grpc_1_1800 sample-interval 1800
+  sensor-group sdn_grpc_1_300 sample-interval 300
+  sensor-group sdn_grpc_1_3600 sample-interval 3600
+  sensor-group sdn_grpc_1_60 sample-interval 60
+  sensor-group sdn_grpc_1_600 sample-interval 600
+  source-address 212.0.134.143
+  destination-group grp_TDTJA4BE6QIYFHVW4R64HLKBHU

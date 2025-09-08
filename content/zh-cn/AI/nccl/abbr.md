@@ -32,3 +32,15 @@ description:
 | abbr  |        english         | chinese | mark |
 | :---: | :--------------------: | :-----: | :--- |
 | NVTX  | NVIDIA Tools Extension |
+CUMEM
+
+
+代码中的缩写
+
+| abbr  |      english       |
+| :---: | :----------------: |
+|  ir   |   index of root    |
+|  rmr  |   rank mod root    |
+|  rpr  |   rank per root    |
+| nelts | number of elements |
+|  tid  |     thread id      |

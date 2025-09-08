@@ -1,0 +1,356 @@
+配置步骤如下：
+
+1. 启动Mellanox配置工具MFT：
+
+#mst start
+# mst status
+MST modules:
+
+------------
+
+MST PCI module loaded
+
+MST PCI configuration module loaded
+
+MST devices:
+
+------------
+
+/dev/mst/mt4115_pciconf0 - PCI configuration cycles access.
+
+domain:bus:dev.fn=0000:05:00.0 addr.reg=88 data.reg=92
+
+Chip revision is: 00
+
+# mlxconfig -d /dev/mst/mt4115_pciconf0 q
+
+Device #1:
+----------
+
+Device type: ConnectX4
+
+PCI device: /dev/mst/mt4115_pciconf0
+
+Configurations: Current
+
+...
+
+LLDP_NB_RX_MODE_P1 0
+
+LLDP_NB_TX_MODE_P1 0
+
+LLDP_NB_DCBX_P1 False(0)
+
+LLDP_NB_RX_MODE_P2 0
+
+LLDP_NB_TX_MODE_P2 0
+
+LLDP_NB_DCBX_P2 False(0)
+
+DCBX_IEEE_P1 True(1)
+
+DCBX_CEE_P1 True(1)
+
+DCBX_WILLING_P1 True(1)
+
+DCBX_IEEE_P2 True(1)
+
+DCBX_CEE_P2 True(1)
+
+DCBX_WILLING_P2 True(1)
+
+备注：本步骤中获取PCI device 信息，下面步骤按需修改。
+
+
+
+2. 查询服务器网卡PFC和ETS相关配置：
+
+
+# mlnx_qos -i ens785f1
+
+PFC configuration:
+
+priority 0 1 2 3 4 5 6 7
+
+enabled 0 0 0 0 0 0 0 0
+
+
+tc: 0 ratelimit: unlimited, tsa: ets, bw: 12%
+
+priority: 0
+
+skprio: 0
+
+skprio: 1
+
+skprio: 2 (tos: 8)
+
+skprio: 3
+
+skprio: 4 (tos: 24)
+
+skprio: 5
+
+skprio: 6 (tos: 16)
+
+skprio: 7
+
+skprio: 8
+
+skprio: 9
+
+skprio: 10
+
+skprio: 11
+
+skprio: 12
+
+skprio: 13
+
+skprio: 14
+
+skprio: 15
+
+tc: 1 ratelimit: unlimited, tsa: ets, bw: 12%
+
+priority: 1
+
+tc: 2 ratelimit: unlimited, tsa: ets, bw: 12%
+
+priority: 2
+
+tc: 3 ratelimit: unlimited, tsa: ets, bw: 12%
+
+priority: 3
+
+tc: 4 ratelimit: unlimited, tsa: ets, bw: 13%
+
+priority: 4
+
+tc: 5 ratelimit: unlimited, tsa: ets, bw: 13%
+
+priority: 5
+
+tc: 6 ratelimit: unlimited, tsa: ets, bw: 13%
+
+priority: 6
+
+tc: 7 ratelimit: unlimited, tsa: ets, bw: 13%
+
+priority: 7
+
+
+
+3. 开启DCBX功能
+
+# mlxconfig -d /dev/mst/mt4115_pciconf0 set LLDP_NB_DCBX_P1=TRUE LLDP_NB_TX_MODE_P1=2 LLDP_NB_RX_MODE_P1=2 LLDP_NB_DCBX_P2=TRUE LLDP_NB_TX_MODE_P2=2 LLDP_NB_RX_MODE_P2=2
+
+
+Device #1:
+
+----------
+
+Device type: ConnectX4
+
+PCI device: /dev/mst/mt4115_pciconf0
+
+ 
+Configurations: Current New
+
+LLDP_NB_RX_MODE_P1 0 2
+
+LLDP_NB_TX_MODE_P1 0 2
+
+LLDP_NB_DCBX_P1 False(0) True(1)
+
+LLDP_NB_RX_MODE_P2 0 2
+
+LLDP_NB_TX_MODE_P2 0 2
+
+LLDP_NB_DCBX_P2 False(0) True(1)
+
+
+Apply new Configuration? ? (y/n) [n] : y
+
+Applying... Done!
+
+
+ 
+4. 验证步骤3中DCBX配置成功
+
+
+# mlxconfig -d /dev/mst/mt4115_pciconf0 q
+
+...
+
+DCBX_IEEE_P1 True(1)
+
+DCBX_CEE_P1 True(1)
+
+DCBX_WILLING_P1 True(1)
+
+DCBX_IEEE_P2 True(1)
+
+DCBX_CEE_P2 True(1)
+
+DCBX_WILLING_P2 True(1)
+
+ 
+5. 重启固件
+
+# mlxfwreset -d /dev/mst/mt4115_pciconf0 --level 3 reset
+
+
+Requested reset level for device, /dev/mst/mt4115_pciconf0:
+
+
+3: Driver restart and PCI reset
+
+Continue with reset?[y/N] y
+
+-I- Stopping Driver -Done
+
+-I- Sending Reset Command To Fw -Done
+
+-I- Resetting PCI -Done
+
+-I- Starting Driver -Done
+
+-I- Restarting MST -Done
+
+-I- FW was loaded successfully.
+
+
+6查询Mellanox驱动配置信息
+
+# ethtool --show-priv-flags ens785f1
+
+Private flags for eth1:
+
+rx_cqe_moder : on
+
+rx_cqe_compress : off
+
+sniffer : off
+
+qos_with_dcbx_by_fw: off
+
+
+# mlnx_qos -i ens785f1 -d get
+
+DCBX mode: OS controlled
+
+ 
+7. 配置驱动允许DCBX协议配置硬件   #不同型号网卡变现有差异，如此步骤执行失败，跳过即可
+
+# mlnx_qos -i ens785f1 -d fw
+
+DCBX mode: Firmware controlled
+
+ 
+# ethtool --set-priv-flags ens785f1 qos_with_dcbx_by_fw on
+
+
+8、验证步骤7配置成功，有如下信息：
+
+# ethtool --show-priv-flags ens785f1
+
+Private flags for eth1:
+
+rx_cqe_moder : on
+
+rx_cqe_compress : off
+
+sniffer : off
+
+qos_with_dcbx_by_fw: on
+
+
+# mlnx_qos -i ens785f1 -d get
+
+DCBX mode: Firmware controlled
+
+9、查看网卡PFC配置信息，使能队列信息正确
+
+# mlnx_qos -i ens785f1
+
+PFC configuration:
+
+priority 0 1 2 3 4 5 6 7
+
+enabled 0 0 0 0 1 0 0 0
+..
+
+10.查看网卡ETS配置信息，与交换机一致
+
+# mlnx_qos -i ens785f1
+
+PFC configuration:
+
+priority 0 1 2 3 4 5 6 7
+
+enabled 0 0 0 0 1 0 0 0
+
+tc: 0 ratelimit: unlimited, tsa: ets, bw: 50%
+
+priority: 0
+
+skprio: 0
+
+skprio: 1
+
+skprio: 2 (tos: 8)
+
+skprio: 3
+
+skprio: 4 (tos: 24)
+
+skprio: 5
+
+skprio: 6 (tos: 16)
+
+skprio: 7
+
+skprio: 8
+
+skprio: 9
+
+skprio: 10
+
+skprio: 11
+
+skprio: 12
+
+skprio: 13
+
+skprio: 14
+
+skprio: 15
+
+tc: 1 ratelimit: unlimited, tsa: ets, bw: 10%
+
+priority: 1
+
+tc: 2 ratelimit: unlimited, tsa: ets, bw: 10%
+
+priority: 2
+
+tc: 3 ratelimit: unlimited, tsa: ets, bw: 10%
+
+priority: 3
+
+tc: 4 ratelimit: unlimited, tsa: ets, bw: 10%
+
+priority: 4
+
+tc: 5 ratelimit: unlimited, tsa: ets, bw: 10%
+
+priority: 5
+
+tc: 6 ratelimit: unlimited, tsa: ets, bw: 0%
+
+priority: 6
+
+tc: 7 ratelimit: unlimited, tsa: ets, bw: 0%
+
+priority: 7

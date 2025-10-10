@@ -1,6 +1,6 @@
 ---
-title: abbr
-weight: 3
+title: terminology
+weight: 2
 date: 2025-02-17
 description:
   abbr in nccl
@@ -26,21 +26,22 @@ description:
 |  ATS   |               Address Translation Services               |
 |  RoCE  |               RDMA over Converged Ethernet               |
 
-
-
-
-| abbr  |        english         | chinese | mark |
-| :---: | :--------------------: | :-----: | :--- |
-| NVTX  | NVIDIA Tools Extension |
-CUMEM
-
-
 代码中的缩写
+| abbr  |              english               |
+| :---: | :--------------------------------: |
+|  ir   |           index of root            |
+|  rmr  |           rank mod root            |
+|  rpr  |           rank per root            |
+| nelts |         number of elements         |
+|  tid  |             thread id              |
+| nvtx  |       NVIDIA Tools Extension       |
+|  nId  |        number of unique IDs        |
+| comm  |           communication            |
+| coll  | collective communication operation |
+|  red  |             reduction              |
 
-| abbr  |      english       |
-| :---: | :----------------: |
-|  ir   |   index of root    |
-|  rmr  |   rank mod root    |
-|  rpr  |   rank per root    |
-| nelts | number of elements |
-|  tid  |     thread id      |
+struct 中的缩写
+|       abbr       |               english                |
+| :--------------: | :----------------------------------: |
+| ncclDevRedOpFull | NCCL Device Reduction Operation Full |
+

@@ -1,0 +1,39 @@
+---
+title: "AI最新资讯"
+linkTitle: "AI News"
+weight: 100
+date: 2025-09-10
+description:
+  最新AI资料
+---
+
+
+[W4A8 GEMM实现LLM 4.9倍加速！LiquidGEMM让反量化、权重加载和矩阵乘流水重叠，较TRT-LLM提升1.6倍](https://mp.weixin.qq.com/s?__biz=MjM5NDczOTA4NQ==&mid=2447891799&idx=1&sn=bb787e1c28c27320740a22759cad7812&chksm=b39769e115994c09bd1d35eb20311b5168826481c2e35460698b23af8b9d152fe24b9456c684&mpshare=1&scene=1&srcid=0907NQprlBx5yqHQ4S9Khlda&sharer_shareinfo=20e3c93193841150aec08018ae02eeee&sharer_shareinfo_first=0611b5b3137a7b2697bf89fa58adfcf5&poc_token=HODnwGijwk45U70Aej6_fMFHXcNpO0uWSEKp9quk)
+
+[美团LongCat-Flash龙猫开源大模型技术报告精读](https://mp.weixin.qq.com/s?__biz=MzU3MTAzOTE0Ng==&mid=2247489340&idx=1&sn=0dfe66f2cc5e3714c6f2b36c633c2463&chksm=fd4ca1a6ca8d6784a1e6f43e19a70d754363c77a7909e36fda967898a8b10a140111c20a3e8b&mpshare=1&srcid=083181T73C64dsiNlAevYLLh&sharer_shareinfo=1aa471cf7c3479e3e9eefddb735998c7&sharer_shareinfo_first=1a63a2d708f16c69a4e2234423570a13&from=groupmessage&scene=1&subscene=93&sessionid=1756698455&clicktime=1756702126&enterid=1756702126&ascene=1&fasttmpl_type=0&fasttmpl_fullversion=7886214-zh_CN-zip&fasttmpl_flag=0&realreporttime=1756702126432&devicetype=android-31&version=28003e55&nettype=WIFI&lang=zh_CN&countrycode=CN&exportkey=n_ChQIAhIQi5%2FRxyQvOnyFc1f4cQbP2hL3AQIE97dBBAEAAAAAAH54Byuohr8AAAAOpnltbLcz9gKNyK89dVj0I8SXFrgceQzDuGyYGtv8CvOQUcUX28pAyuIWeVmBHA%2BTd9ja6r9N37krFTJjgoKAIowciUwsrWOoYMrGEH9dJqsAybEcwsPCQuc0hcYIlZCeouTE9cgSzgng4aVHDp%2FJ0KDS9AClSi82eTbv%2Fs73KarwRz2ZFHPWxW3gfBj9LUBHYRjsveoAgNXxcgHl5MsULeEd0GF73hO71W40mpLTkHjOpg8cp02FkAacocZUzZmkiSARyxNsQdm47f7Zav0Qgb5Utjf7kGE7I2FlBs9IbK0%3D&pass_ticket=El2YhYqz8niAoXMZV2pYg54vL0bhtuzwx9%2B9cxJIFIIdLGPBWv0sbJjP%2BXlD3ix%2F&wx_header=3)
+
+
+[NVIDIA技术沙龙 《大规模EP优化：PD分离MoE并行方式》课程笔记](https://mp.weixin.qq.com/s?sessionid=1756689517&__biz=MzA4MjY4NTk0NQ==&mid=2247529006&idx=1&sn=3f4648df174a0ea85f0dca08f652a0f1&chksm=9f83c8b8a8f441aec1766a445093269a593ee09aef8163f779b7c1a5754f02815bb81a6b7823&exptype=timeline_unsubscribed_social_card&force_enter_love_page=1&scene=304&subscene=90&clicktime=1756689519&enterid=1756689519&ascene=0&fasttmpl_type=0&fasttmpl_fullversion=7886214-zh_CN-zip&fasttmpl_flag=0&realreporttime=1756689519958&devicetype=android-31&version=28003e55&nettype=WIFI&lang=zh_CN&countrycode=CN&exportkey=n_ChQIAhIQnxQT1wA3n4QsT0spm09H0hLWAQIE97dBBAEAAAAAAAVgLz6QNboAAAAOpnltbLcz9gKNyK89dVj0KEtm9yVITDRwkQLUlnOgHlqCY9%2F6FPa3j5xJ8%2BUg7AmApLhxZdMjZaPS7xnd0olAz14i4H5gWjw8EaA%2Foe%2BYtdwNNmiqiTZ1P9mMm41R3sg9A3Hmopu%2Brh8%2F7jUF0%2BmC5c2t%2BrxWQiBAT4u0ydDhdko6bHP5jBK%2FjPmDkngJfeEpxZrN0sOuGKSRPhWbc6HM1uk5dACF8AufydWF1SBqi88CrneSkIv1%2BalYRWA4jVs%3D&pass_ticket=N7AeiWu3QmcZeCf2LlkNAjJQZbGdiLK8X5%2FsiPVtCuvHi9rr9NaKGfo0seOA00fH&wx_header=3)
+
+
+[1.5 倍加速 MoE 训练：从零构建基于 Blackwell 的 MXFP8 Kernels](https://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&mid=2247543597&idx=1&sn=1301944224acf284e2d2b85d226d8a15&chksm=cf142bc1f77c7f8bdfe3613a99e3893ca8e1fe44c876cfbee61d6a6e1cffd40262bba166b4a9&mpshare=1&scene=1&srcid=08302hPnmuWR7jOFQWgx8lFf&sharer_shareinfo=9d4c66e5f86df50401849769455b4984&sharer_shareinfo_first=fb9e2a1ccce9c441bfb636f332f297eb#rd)
+
+
+[Meta提出Deep Think with Confidence：几乎啥都不用动，就能提升推理的准确性与效率](https://mp.weixin.qq.com/s/aufgdBA84MPiGsFUYMxuDQ?notreplace=true&mpshare=1&scene=1&srcid=&sharer_shareinfo=b48786e9edc6c8434cb4b7a45e64037e&sharer_shareinfo_first=b48786e9edc6c8434cb4b7a45e64037e#)
+
+[FlashAttention-4震撼来袭，原生支持Blackwell GPU，英伟达的护城河更深了？](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650987584&idx=1&sn=e5b3e803e4b9054c7fe98ee2e0cbc702&chksm=85cc329b4fb24b4a9aa0419d5edb4ea2386d59b24f7adeba7ed3b832abafa7b42d10f8ac81cb&xtrack=1&scene=90&subscene=93&sessionid=1756204790&flutter_pos=1&clicktime=1756204804&enterid=1756204804&finder_biz_enter_id=4&ranksessionid=1756204671&jumppath=%2CSettingsSwitchAccountUI_1756204781422%2C1001_1756204786965%2C50094_1756204790877&jumppathdepth=4&ascene=56&fasttmpl_type=0&fasttmpl_fullversion=7880261-zh_CN-zip&fasttmpl_flag=0&realreporttime=1756204804440&devicetype=android-31&version=28003e94&nettype=cmnet&lang=zh_CN&session_us=gh_dbc0a5474692&countrycode=CN&exportkey=n_ChQIAhIQCOL2xxa3v8XY9YPC6H0EMBLfAQIE97dBBAEAAAAAAG0dBjwOOcgAAAAOpnltbLcz9gKNyK89dVj0O%2FKzJXk4pEGqu68yprPnPydhYzq619PpRO9pGvew3gm%2Br%2F7WUr421ao%2FcTiic%2Ffs3nl%2FStOHUpM0OVSFDixhuiWH2u4JdoguQj0bJb1SZ5QThboguJU1UTymWQFH6qPB9L%2F8P1omnk2C%2FUVS0vi%2ByNT0bDZweKoK%2BeM04tSmjmZc5jLNner0AgTIUMSjmdlpDdRUS3jTLGU264jIOinXVlkACAH6tD63q3OF6Cqsyu%2FkTbx3zVGeVD0%3D&pass_ticket=gTg3nTIEo6zqyNxqlpKQQ%2F%2F2jo0eB7wdmqnBNR1VRE6WASkJrJtWUp3%2BHuP7FLjm&wx_header=3)
+
+
+[Day2/5：「Matrix-Game 2.0」发布，国产开源的Genie 3来啦](https://mp.weixin.qq.com/s?__biz=MzI1MzE1NDc3Mg==&mid=2247505931&idx=1&sn=3e622bb56e4dd038d1cf84febe657d72&chksm=e8d02356b004f9773f6b198b9ac8bc93cbe6fe3ba924a7a8e7994256c003b0770671a829bb53&mpshare=1&scene=1&srcid=08127A2ACZRdJAyo6BMVkzV1&sharer_shareinfo=f447145c16d5b952f02bf4ca8c709ca6&sharer_shareinfo_first=f447145c16d5b952f02bf4ca8c709ca6#rd)
+
+[异构 GPU 训练 LLM 卡壳？这款模拟器太懂了！精准预测性能](https://mp.weixin.qq.com/s?__biz=MzA5Njk2MjIwOA==&mid=2448240639&idx=1&sn=8fc329c67ee30bb87bed1951628bb6d9&chksm=8571eeb0b2ba7cfe98fc749e6350d8c07bdf85323ded976de0cb22c50da585cfcd57a815ddd4&xtrack=1&scene=90&subscene=93&sessionid=1755004624&flutter_pos=0&clicktime=1755004630&enterid=1755004630&finder_biz_enter_id=4&ranksessionid=1755004462&jumppath=1123_1755003849941%2C20020_1755003854238%2C1102_1755004462023%2C50094_1755004624238&jumppathdepth=4&ascene=56&fasttmpl_type=4&fasttmpl_fullversion=7861158-zh_CN-zip&fasttmpl_flag=0&realreporttime=1755004630612&devicetype=android-31&version=28003d59&nettype=WIFI&lang=zh_CN&session_us=gh_cb01144df8da&countrycode=CN&exportkey=n_ChQIAhIQUyUm1904ULiYnsngr0%2Ft8xLxAQIE97dBBAEAAAAAAL%2BXFHQHcjkAAAAOpnltbLcz9gKNyK89dVj0ZzenzOGt0AAwtOMeXoezA09XOaRSlMDVG0ngSNT%2Fp4soqnMsDZrPIy6cUax2ciNudx6lODq%2FPRdfBXYXqp1%2F5D7IKNyb933dDFwBIfk%2FYShkjpsWpPs%2BMrNa6DfIXS8AS8Q9MkzbBBVUPcTl%2F7WK6%2Bt0fqnCVy1IitfN2Vw8S3OhDS8oautVJBpNAYB%2BhcC5Z6lTW3rb%2BAK0agZepLmeuHeasMfTUu%2Bk%2B9GvmYr81LjBMZnSSdIJYg85L%2Fm9iuZsKVEaRyWNmQbvVRI%3D&pass_ticket=eVkkYuUW%2BM7HiFdkLpTT1K9JIVXHKAbus6F7VQ0vyDZMhLLGR7BvCFDSaYCZHBD5&wx_header=3)
+
+
+[腾讯TRMT助力DeepSeek-MoE模型通信提速30%](https://mp.weixin.qq.com/s/tke8GmdzecqFLTyBA9CWdg)
+
+[分析一下EP并行和DeepSeek开源的DeepEP代码](https://mp.weixin.qq.com/s/1Cz7oQbVkPMam3eoKQWz0w?nwr_flag=1#wechat_redirect)
+
+[Transformer模型详解（图解最完整版）](https://zhuanlan.zhihu.com/p/338817680)
+
+https://github.com/NVIDIA/nccl/issues/1730
+NCCL的RAS功能，能够非常清晰的显示通信状态，这个功能对BR200非常重要，我们在1XX上面遇到太多这样的问题，需要找很多团队来debug。

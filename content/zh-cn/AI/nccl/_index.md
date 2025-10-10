@@ -1,5 +1,5 @@
 ---
-title: nccl
+title: NCCL
 weight: 2
 date: 2025-02-14
 description:

@@ -1,0 +1,276 @@
+flowchart LR
+
+    rect_1_1["A3"]:::fixedRect
+    rect_1_2["A7"]:::fixedRect
+    rect_1_3["B4"]:::fixedRect
+    rect_1_4["B0"]:::fixedRect
+    rect_1_5["C1"]:::fixedRect
+    rect_1_6["C5"]:::fixedRect
+    rect_1_7["D6"]:::fixedRect
+    rect_1_8["D2"]:::fixedRect
+
+    rect_2_1["A2+D2"]:::reduceRect
+    rect_2_2["A3"]:::fixedRect
+    rect_2_3["B7+A7"]:::reduceRect
+    rect_2_4["B4"]:::fixedRect
+    rect_2_5["C0+B0"]:::reduceRect
+    rect_2_6["C1"]:::fixedRect
+    rect_2_7["D5+C5"]:::reduceRect
+    rect_2_8["D6"]:::fixedRect
+
+    rect_3_1["D6"]:::fixedRect
+    rect_3_2["A2+D2"]:::fixedRect
+    rect_3_3["A3"]:::fixedRect
+    rect_3_4["B7+A7"]:::fixedRect
+    rect_3_5["B4"]:::fixedRect
+    rect_3_6["C0+B0"]:::fixedRect
+    rect_3_7["C1"]:::fixedRect
+    rect_3_8["D5+C5"]:::fixedRect
+
+    rect_4_1["D5+C5"]:::fixedRect
+    rect_4_2["A6+D6"]:::reduceRect
+    rect_4_3["A2+D2"]:::fixedRect
+    rect_4_4["B3+A3"]:::reduceRect
+    rect_4_5["B7+A7"]:::fixedRect
+    rect_4_6["C4+B4"]:::reduceRect
+    rect_4_7["C0+B0"]:::fixedRect
+    rect_4_8["D1+C1"]:::reduceRect
+
+    rect_5_1["A1+D1+C1"]:::reduceRect
+    rect_5_2["A5+D5+C5"]:::reduceRect
+    rect_5_3["B6+A6+D6"]:::reduceRect
+    rect_5_4["B2+A2+D2"]:::reduceRect
+    rect_5_5["C3+B3+A3"]:::reduceRect
+    rect_5_6["C7+B7+A7"]:::reduceRect
+    rect_5_7["D4+C4+B4"]:::reduceRect
+    rect_5_8["D0+C0+B0"]:::reduceRect
+
+    rect_6_1["A0+D0+C0+B0"]:::reduceRect
+    rect_6_2["A1+D1+C1"]:::fixedRect
+    rect_6_3["B5+A5+D5+C5"]:::reduceRect
+    rect_6_4["B6+A6+D6"]:::fixedRect
+    rect_6_5["C2+B2+A2+D2"]:::reduceRect
+    rect_6_6["C3+B3+A3"]:::fixedRect
+    rect_6_7["D7+C7+B7+A7"]:::reduceRect
+    rect_6_8["D4+C4+B4"]:::fixedRect
+
+    rect_7_1["D4+C4+B4"]:::fixedRect
+    rect_7_2["A0+D0+C0+B0"]:::fixedRect
+    rect_7_3["A1+D1+C1"]:::fixedRect
+    rect_7_4["B5+A5+D5+C5"]:::fixedRect
+    rect_7_5["B6+A6+D6"]:::fixedRect
+    rect_7_6["C2+B2+A2+D2"]:::fixedRect
+    rect_7_7["C3+B3+A3"]:::fixedRect
+    rect_7_8["D7+C7+B7+A7"]:::fixedRect
+
+    rect_8_1["D7+C7+B7+A7"]:::fixedRect
+    rect_8_2["A4+D4+C4+B4"]:::reduceRect
+    rect_8_3["A0+D0+C0+B0"]:::fixedRect
+    rect_8_4["B1+A1+D1+C1"]:::reduceRect
+    rect_8_5["B5+A5+D5+C5"]:::fixedRect
+    rect_8_6["C6+B6+A6+D6"]:::reduceRect
+    rect_8_7["C2+B2+A2+D2"]:::fixedRect
+    rect_8_8["D3+C3+B3+A3"]:::reduceRect
+
+    rect_9_1["D3+C3+B3+A3"]:::fixedRect
+    rect_9_2["D7+C7+B7+A7"]:::fixedRect
+    rect_9_3["A4+D4+C4+B4"]:::fixedRect
+    rect_9_4["A0+D0+C0+B0"]:::fixedRect
+    rect_9_5["B1+A1+D1+C1"]:::fixedRect
+    rect_9_6["B5+A5+D5+C5"]:::fixedRect
+    rect_9_7["C6+B6+A6+D6"]:::fixedRect
+    rect_9_8["C2+B2+A2+D2"]:::fixedRect
+
+    rect_10_1["C2+B2+A2+D2"]:::fixedRect
+    rect_10_2["D3+C3+B3+A3"]:::fixedRect
+    rect_10_3["D7+C7+B7+A7"]:::fixedRect
+    rect_10_4["A4+D4+C4+B4"]:::fixedRect
+    rect_10_5["A0+D0+C0+B0"]:::fixedRect
+    rect_10_6["B1+A1+D1+C1"]:::fixedRect
+    rect_10_7["B5+A5+D5+C5"]:::fixedRect
+    rect_10_8["C6+B6+A6+D6"]:::fixedRect
+
+    rect_11_1["C6+B6+A6+D6"]:::fixedRect
+    rect_11_2["C2+B2+A2+D2"]:::fixedRect
+    rect_11_3["D3+C3+B3+A3"]:::fixedRect
+    rect_11_4["D7+C7+B7+A7"]:::fixedRect
+    rect_11_5["A4+D4+C4+B4"]:::fixedRect
+    rect_11_6["A0+D0+C0+B0"]:::fixedRect
+    rect_11_7["B1+A1+D1+C1"]:::fixedRect
+    rect_11_8["B5+A5+D5+C5"]:::fixedRect
+
+    rect_12_1["B5+A5+D5+C5"]:::fixedRect
+    rect_12_2["C6+B6+A6+D6"]:::fixedRect
+    rect_12_3["C2+B2+A2+D2"]:::fixedRect
+    rect_12_4["D3+C3+B3+A3"]:::fixedRect
+    rect_12_5["D7+C7+B7+A7"]:::fixedRect
+    rect_12_6["A4+D4+C4+B4"]:::fixedRect
+    rect_12_7["A0+D0+C0+B0"]:::fixedRect
+    rect_12_8["B1+A1+D1+C1"]:::fixedRect
+
+    rect_13_1["B1+A1+D1+C1"]:::fixedRect
+    rect_13_2["B5+A5+D5+C5"]:::fixedRect
+    rect_13_3["C6+B6+A6+D6"]:::fixedRect
+    rect_13_4["C2+B2+A2+D2"]:::fixedRect
+    rect_13_5["D3+C3+B3+A3"]:::fixedRect
+    rect_13_6["D7+C7+B7+A7"]:::fixedRect
+    rect_13_7["A4+D4+C4+B4"]:::fixedRect
+    rect_13_8["A0+D0+C0+B0"]:::fixedRect
+
+    rect_14_1["A0+D0+C0+B0"]:::fixedRect
+    rect_14_2["B1+A1+D1+C1"]:::fixedRect
+    rect_14_3["B5+A5+D5+C5"]:::fixedRect
+    rect_14_4["C6+B6+A6+D6"]:::fixedRect
+    rect_14_5["C2+B2+A2+D2"]:::fixedRect
+    rect_14_6["D3+C3+B3+A3"]:::fixedRect
+    rect_14_7["D7+C7+B7+A7"]:::fixedRect
+    rect_14_8["A4+D4+C4+B4"]:::fixedRect
+
+    rect_15_1["A4+D4+C4+B4"]:::fixedRect
+    rect_15_2["A0+D0+C0+B0"]:::fixedRect
+    rect_15_3["B1+A1+D1+C1"]:::fixedRect
+    rect_15_4["B5+A5+D5+C5"]:::fixedRect
+    rect_15_5["C6+B6+A6+D6"]:::fixedRect
+    rect_15_6["C2+B2+A2+D2"]:::fixedRect
+    rect_15_7["D3+C3+B3+A3"]:::fixedRect
+    rect_15_8["D7+C7+B7+A7"]:::fixedRect
+
+    rect_16_7["D7+C7+B7+A7"]:::fixedRect
+    rect_16_8["A4+D4+C4+B4"]:::fixedRect
+    rect_16_1["A0+D0+C0+B0"]:::fixedRect
+    rect_16_2["B1+A1+D1+C1"]:::fixedRect
+    rect_16_3["B5+A5+D5+C5"]:::fixedRect
+    rect_16_4["C6+B6+A6+D6"]:::fixedRect
+    rect_16_5["C2+B2+A2+D2"]:::fixedRect
+    rect_16_6["D3+C3+B3+A3"]:::fixedRect
+
+    rect_1_1  --> rect_1_2;
+    rect_1_2  --> rect_1_3;
+    rect_1_3  --> rect_1_4;
+    rect_1_4  --> rect_1_5;
+    rect_1_5  --> rect_1_6;
+    rect_1_6  --> rect_1_7;
+    rect_1_7  --> rect_1_8;
+
+    rect_2_1  --> rect_2_2;
+    rect_2_2  --> rect_2_3;
+    rect_2_3  --> rect_2_4;
+    rect_2_4  --> rect_2_5;
+    rect_2_5  --> rect_2_6;
+    rect_2_6  --> rect_2_7;
+    rect_2_7  --> rect_2_8;
+
+    rect_3_1  --> rect_3_2;
+    rect_3_2  --> rect_3_3;
+    rect_3_3  --> rect_3_4;
+    rect_3_4  --> rect_3_5;
+    rect_3_5  --> rect_3_6;
+    rect_3_6  --> rect_3_7;
+    rect_3_7  --> rect_3_8;
+
+    rect_4_1  --> rect_4_2;
+    rect_4_2  --> rect_4_3;
+    rect_4_3  --> rect_4_4;
+    rect_4_4  --> rect_4_5;
+    rect_4_5  --> rect_4_6;
+    rect_4_6  --> rect_4_7;
+    rect_4_7  --> rect_4_8;
+
+    rect_5_1  --> rect_5_2;
+    rect_5_2  --> rect_5_3;
+    rect_5_3  --> rect_5_4;
+    rect_5_4  --> rect_5_5;
+    rect_5_5  --> rect_5_6;
+    rect_5_6  --> rect_5_7;
+    rect_5_7  --> rect_5_8;
+
+    rect_6_1  --> rect_6_2;
+    rect_6_2  --> rect_6_3;
+    rect_6_3  --> rect_6_4;
+    rect_6_4  --> rect_6_5;
+    rect_6_5  --> rect_6_6;
+    rect_6_6  --> rect_6_7;
+    rect_6_7  --> rect_6_8;
+
+    rect_7_1  --> rect_7_2;
+    rect_7_2  --> rect_7_3;
+    rect_7_3  --> rect_7_4;
+    rect_7_4  --> rect_7_5;
+    rect_7_5  --> rect_7_6;
+    rect_7_6  --> rect_7_7;
+    rect_7_7  --> rect_7_8;
+
+    rect_8_1  --> rect_8_2;
+    rect_8_2  --> rect_8_3;
+    rect_8_3  --> rect_8_4;
+    rect_8_4  --> rect_8_5;
+    rect_8_5  --> rect_8_6;
+    rect_8_6  --> rect_8_7;
+    rect_8_7  --> rect_8_8;
+
+    rect_9_1  --> rect_9_2;
+    rect_9_2  --> rect_9_3;
+    rect_9_3  --> rect_9_4;
+    rect_9_4  --> rect_9_5;
+    rect_9_5  --> rect_9_6;
+    rect_9_6  --> rect_9_7;
+    rect_9_7  --> rect_9_8;
+
+    rect_10_1  --> rect_10_2;
+    rect_10_2  --> rect_10_3;
+    rect_10_3  --> rect_10_4;
+    rect_10_4  --> rect_10_5;
+    rect_10_5  --> rect_10_6;
+    rect_10_6  --> rect_10_7;
+    rect_10_7  --> rect_10_8;
+
+    rect_11_1  --> rect_11_2;
+    rect_11_2  --> rect_11_3;
+    rect_11_3  --> rect_11_4;
+    rect_11_4  --> rect_11_5;
+    rect_11_5  --> rect_11_6;
+    rect_11_6  --> rect_11_7;
+    rect_11_7  --> rect_11_8;
+
+    rect_12_1  --> rect_12_2;
+    rect_12_2  --> rect_12_3;
+    rect_12_3  --> rect_12_4;
+    rect_12_4  --> rect_12_5;
+    rect_12_5  --> rect_12_6;
+    rect_12_6  --> rect_12_7;
+    rect_12_7  --> rect_12_8;
+
+    rect_13_1  --> rect_13_2;
+    rect_13_2  --> rect_13_3;
+    rect_13_3  --> rect_13_4;
+    rect_13_4  --> rect_13_5;
+    rect_13_5  --> rect_13_6;
+    rect_13_6  --> rect_13_7;
+    rect_13_7  --> rect_13_8;
+
+    rect_14_1  --> rect_14_2;
+    rect_14_2  --> rect_14_3;
+    rect_14_3  --> rect_14_4;
+    rect_14_4  --> rect_14_5;
+    rect_14_5  --> rect_14_6;
+    rect_14_6  --> rect_14_7;
+    rect_14_7  --> rect_14_8;
+
+    rect_15_1  --> rect_15_2;
+    rect_15_2  --> rect_15_3;
+    rect_15_3  --> rect_15_4;
+    rect_15_4  --> rect_15_5;
+    rect_15_5  --> rect_15_6;
+    rect_15_6  --> rect_15_7;
+    rect_15_7  --> rect_15_8;
+
+    rect_16_1  --> rect_16_2;
+    rect_16_2  --> rect_16_3;
+    rect_16_3  --> rect_16_4;
+    rect_16_4  --> rect_16_5;
+    rect_16_5  --> rect_16_6;
+    rect_16_6  --> rect_16_7;
+    rect_16_7  --> rect_16_8;
+
+    classDef fixedRect stroke:#333,stroke-width:4px;
+    classDef reduceRect fill:#f9f,stroke:#333,stroke-width:4px;

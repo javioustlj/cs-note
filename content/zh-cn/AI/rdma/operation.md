@@ -477,20 +477,235 @@ PCI Devices:
 ------------
 
 3b:00.0
-
 cb:00.0
-
 5d:00.0
-
 4b:00.0
-
 db:00.0
-
 18:00.0
-
 9b:00.0
-
 a8:00.0
-
 bb:00.0
+```
+
+```sh
+$ ibv_devinfo
+hca_id: mlx5_0
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:24a0
+        sys_image_guid:                 5c25:7303:007a:24a0
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_1
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:2584
+        sys_image_guid:                 5c25:7303:007a:2584
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_2
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:256c
+        sys_image_guid:                 5c25:7303:007a:256c
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_3
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:23ec
+        sys_image_guid:                 5c25:7303:007a:23ec
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_4
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      9c63:c003:0008:c93a
+        sys_image_guid:                 9c63:c003:0008:c93a
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000222
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             1024 (3)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_5
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:2468
+        sys_image_guid:                 5c25:7303:007a:2468
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_6
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:25cc
+        sys_image_guid:                 5c25:7303:007a:25cc
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_7
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:25a8
+        sys_image_guid:                 5c25:7303:007a:25a8
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+hca_id: mlx5_8
+        transport:                      InfiniBand (0)
+        fw_ver:                         20.39.3004
+        node_guid:                      5c25:7303:007a:27f0
+        sys_image_guid:                 5c25:7303:007a:27f0
+        vendor_id:                      0x02c9
+        vendor_part_id:                 4123
+        hw_ver:                         0x0
+        board_id:                       MT_0000000223
+        phys_port_cnt:                  1
+                port:   1
+                        state:                  PORT_ACTIVE (4)
+                        max_mtu:                4096 (5)
+                        active_mtu:             4096 (5)
+                        sm_lid:                 0
+                        port_lid:               0
+                        port_lmc:               0x00
+                        link_layer:             Ethernet
+
+```
+
+```sh
+ show_gids
+DEV     PORT    INDEX   GID                                     IPv4            VER     DEV
+---     ----    -----   ---                                     ------------    ---     ---
+mlx5_0  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:24a0                 v1      ens11np0
+mlx5_0  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:24a0                 v2      ens11np0
+mlx5_0  1       2       0000:0000:0000:0000:0000:ffff:c0a8:0aa0 192.168.10.160          v1      ens11np0
+mlx5_0  1       3       0000:0000:0000:0000:0000:ffff:c0a8:0aa0 192.168.10.160          v2      ens11np0
+mlx5_1  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:2584                 v1      ens12np0
+mlx5_1  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:2584                 v2      ens12np0
+mlx5_1  1       2       0000:0000:0000:0000:0000:ffff:c0a8:0a20 192.168.10.32   v1      ens12np0
+mlx5_1  1       3       0000:0000:0000:0000:0000:ffff:c0a8:0a20 192.168.10.32   v2      ens12np0
+mlx5_2  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:256c                 v1      ens13np0
+mlx5_2  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:256c                 v2      ens13np0
+mlx5_2  1       2       0000:0000:0000:0000:0000:ffff:c0a8:28a0 192.168.40.160          v1      ens13np0
+mlx5_2  1       3       0000:0000:0000:0000:0000:ffff:c0a8:28a0 192.168.40.160          v2      ens13np0
+mlx5_3  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:23ec                 v1      ens14np0
+mlx5_3  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:23ec                 v2      ens14np0
+mlx5_3  1       2       0000:0000:0000:0000:0000:ffff:c0a8:2820 192.168.40.32   v1      ens14np0
+mlx5_3  1       3       0000:0000:0000:0000:0000:ffff:c0a8:2820 192.168.40.32   v2      ens14np0
+mlx5_4  1       0       fe80:0000:0000:0000:9e63:c0ff:fe08:c93a                 v1      ens22np0
+mlx5_4  1       1       fe80:0000:0000:0000:9e63:c0ff:fe08:c93a                 v2      ens22np0
+mlx5_4  1       2       0000:0000:0000:0000:0000:ffff:0a5a:1896 10.90.24.150    v1      ens22np0
+mlx5_4  1       3       0000:0000:0000:0000:0000:ffff:0a5a:1896 10.90.24.150    v2      ens22np0
+mlx5_5  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:2468                 v1      ens15np0
+mlx5_5  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:2468                 v2      ens15np0
+mlx5_5  1       2       0000:0000:0000:0000:0000:ffff:c0a8:1ea0 192.168.30.160          v1      ens15np0
+mlx5_5  1       3       0000:0000:0000:0000:0000:ffff:c0a8:1ea0 192.168.30.160          v2      ens15np0
+mlx5_6  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:25cc                 v1      ens16np0
+mlx5_6  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:25cc                 v2      ens16np0
+mlx5_6  1       2       0000:0000:0000:0000:0000:ffff:c0a8:1e20 192.168.30.32   v1      ens16np0
+mlx5_6  1       3       0000:0000:0000:0000:0000:ffff:c0a8:1e20 192.168.30.32   v2      ens16np0
+mlx5_7  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:25a8                 v1      ens17np0
+mlx5_7  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:25a8                 v2      ens17np0
+mlx5_7  1       2       0000:0000:0000:0000:0000:ffff:c0a8:14a0 192.168.20.160          v1      ens17np0
+mlx5_7  1       3       0000:0000:0000:0000:0000:ffff:c0a8:14a0 192.168.20.160          v2      ens17np0
+mlx5_8  1       0       fe80:0000:0000:0000:5e25:73ff:fe7a:27f0                 v1      ens18np0
+mlx5_8  1       1       fe80:0000:0000:0000:5e25:73ff:fe7a:27f0                 v2      ens18np0
+mlx5_8  1       2       0000:0000:0000:0000:0000:ffff:c0a8:1420 192.168.20.32   v1      ens18np0
+mlx5_8  1       3       0000:0000:0000:0000:0000:ffff:c0a8:1420 192.168.20.32   v2      ens18np0
+n_gids_found=36
+```
+
+
+```sh
+ib_write_bw -d mlx5_0 -i 1 172.16.168.218
 ```

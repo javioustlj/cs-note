@@ -25,6 +25,12 @@ description:
 |  PLX   |
 |  ATS   |               Address Translation Services               |
 |  RoCE  |               RDMA over Converged Ethernet               |
+|  NUMA  |                Non-Uniform Memory Access                 |
+|  ECMP  |              Equal-Cost Multi-Path Routing               |
+|  CTS   |                      Clear to Send                       |
+| RTR | Ready to Receive |
+| SHARP | Scalable Hierarchical Aggregation and Reduction Protocol |
+
 
 代码中的缩写
 | abbr  |              english               |
